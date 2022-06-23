@@ -27,25 +27,30 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         // jsr250Enabled = true,
         prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-  @Autowired
-  UserDetailsServiceImpl userDetailsService;
 
-  @Autowired
-  private AuthEntryPointJwt unauthorizedHandler;
+    final String[] byPassUrls = {
+            "/mail/**", "/token/authenticate"
+    };
 
-  @Bean
-  public AuthTokenFilter authenticationJwtTokenFilter() {
-    return new AuthTokenFilter();
-  }
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
 
-  @Override
-  public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-    authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-  }
+    @Autowired
+    private AuthEntryPointJwt unauthorizedHandler;
 
-  @Bean
-  @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }
 
@@ -56,14 +61,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.cors().and().csrf().disable()
-            .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-            .antMatchers("/api/test/**").permitAll()
-            .antMatchers("/api/v1/cart/**").permitAll()
-            .anyRequest().authenticated();
+      http.cors().and().csrf().disable()
+              .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+              .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+              .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+              .antMatchers("/api/test/**").permitAll()
+              .antMatchers("/mail/**").permitAll()
+              .antMatchers("/token/authenticate").permitAll()
+              .antMatchers("/api/v1/cart/**").permitAll()
+              .anyRequest().authenticated();
 
-    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+      http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
   }
 }

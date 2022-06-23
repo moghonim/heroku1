@@ -1,12 +1,4 @@
-# task1
-
-log in and registration "multi user system"
-
-# Spring Boot JWT Authentication with Spring Security & Spring Data JPA
-
-## Configure Spring Datasource, JPA, App properties
-
-Open `src/main/resources/application.properties`
+# Lama Marketplace
 
 ```
 - For MySQL
@@ -14,7 +6,7 @@ Open `src/main/resources/application.properties`
 
 spring.datasource.url= jdbc:mysql://localhost:3306/stack_deans?useSSL=false
 spring.datasource.username= root
-spring.datasource.password= 123456
+spring.datasource.password= 1234
 
 spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.hibernate.ddl-auto= update
@@ -27,11 +19,3 @@ mvn spring-boot:run
 
 ```
 
-## Run following SQL insert statements
-```
-
-INSERT INTO roles(name) VALUES('ROLE_USER');
-INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
-
-```

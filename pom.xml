@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.stackdeans</groupId>
-	<artifactId>login-register</artifactId>
+	<artifactId>Lama-marketplace</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>login-register</name>
+	<name>Lama-marketplace</name>
 	<description>Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -43,10 +43,10 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!--		<dependency>-->
-		<!--			<groupId>org.flywaydb</groupId>-->
-		<!--			<artifactId>flyway-core</artifactId>-->
-		<!--		</dependency>-->
+		<!--				<dependency>-->
+		<!--					<groupId>org.flywaydb</groupId>-->
+		<!--					<artifactId>flyway-core</artifactId>-->
+		<!--				</dependency>-->
 
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -65,6 +65,15 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 
