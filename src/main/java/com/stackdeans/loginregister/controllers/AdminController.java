@@ -36,12 +36,12 @@ public class AdminController {
     @PostMapping(value = "/create-user")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addNewUser(@Valid @RequestBody SignupRequest adminCreateNewUser) {
+
         if (userRepository.existsByUsername(adminCreateNewUser.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username is already taken!"));
         }
-
         if (userRepository.existsByEmail(adminCreateNewUser.getEmail())) {
             return ResponseEntity
                     .badRequest()
@@ -55,10 +55,11 @@ public class AdminController {
 
         Set<String> strRoles = adminCreateNewUser.getRole();
         Set<Role> roles = new HashSet<>();
-
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            System.out.println("first");
+
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
@@ -67,8 +68,6 @@ public class AdminController {
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
-
-
                         break;
                     case "mod":
                         Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
@@ -89,16 +88,11 @@ public class AdminController {
                         roles.add(userRole);
                 }
             });
-
         }
-
         user.setRoles(roles);
         userRepository.save(user);
-
         return ResponseEntity.ok(new MessageResponse("User created successfully!"));
     }
-
-
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(path = "/add-permission")
     public ResponseEntity<MessageResponse> addPermission(@Valid @RequestBody UserDto userDto) {
@@ -114,7 +108,6 @@ public class AdminController {
         User user = userRepository.findByUsername(userDto.getUsername());
         Set<String> strRoles = userDto.getRole();
         Set<Role> roles = new HashSet<>();
-
         if (strRoles == null) {
 //            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
             throw new RuntimeException("Error: Role is not found please insert roles.");
@@ -126,20 +119,16 @@ public class AdminController {
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
-
-
                         break;
                     case "mod":
                         Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
-
                         break;
                     case "vendor":
                         Role vendorRole = roleRepository.findByName(ERole.ROLE_VENDOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(vendorRole);
-
                         break;
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -147,16 +136,13 @@ public class AdminController {
                         roles.add(userRole);
                 }
             });
-
         }
-
         user.setRoles(roles);
         userRepository.save(user);
+        System.out.println("first");
 
         return ResponseEntity.ok(new MessageResponse("User permissions updated successfully!"));
     }
-
-
 }
 
 

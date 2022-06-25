@@ -2,12 +2,7 @@ package com.stackdeans.loginregister.models;
 
 import javax.persistence.*;
 
-/**
- * The Class Product.
- *
- * @author devrobot
- * @version 1.0
- */
+
 @Entity
 public class Product {
 
@@ -22,7 +17,7 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "weight")
+    @Column(name = "weight", nullable = false)
     private double weight;
 
     @Column(name = "price", nullable = false)
@@ -40,12 +35,16 @@ public class Product {
     @ManyToOne
     private Category category;
 
+    @Column(name = "sellings", nullable = false)
+    private int noOfSellings;
+
+
     public Product() {
     }
 
 
     public Product(Integer id, String name, String description, double weight, double price, String picture1,
-                   String picture2, String picture3, Category category) {
+                   String picture2, String picture3, Category category, int noOfSellings) {
         super();
         this.id = id;
         this.name = name;
@@ -56,6 +55,15 @@ public class Product {
         this.picture2 = picture2;
         this.picture3 = picture3;
         this.category = category;
+        this.noOfSellings = noOfSellings;
+    }
+
+    public int getNoOfSellings() {
+        return noOfSellings;
+    }
+
+    public void setNoOfSellings(int noOfSellings) {
+        this.noOfSellings = noOfSellings;
     }
 
 
