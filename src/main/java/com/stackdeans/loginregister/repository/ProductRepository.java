@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Ghonim
  */
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
     //   @Query(value = "SELECT p FROM Product WHERE p.name = :name")
     @Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
     List<Product> search(@Param("name") String name);

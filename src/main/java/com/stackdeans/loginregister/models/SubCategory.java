@@ -8,7 +8,7 @@ public class SubCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", unique = true, nullable = false)
     private String name;
@@ -21,18 +21,18 @@ public class SubCategory {
     public SubCategory() {
     }
 
-    public SubCategory(Integer id, String name, List<Product> products, Category category) {
+    public SubCategory(Long id, String name, List<Product> products, Category category) {
         this.id = id;
         this.name = name;
         this.products = products;
         this.category = category;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -9,7 +9,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -49,7 +49,7 @@ public class Product {
     }
 
 
-    public Product(Integer id, String name, String description, double weight, double price, String picture1,
+    public Product(Long id, String name, String description, double weight, double price, String picture1,
                    String picture2, String picture3, SubCategory subCategory, int noOfSellings) {
         super();
         this.id = id;
@@ -73,12 +73,12 @@ public class Product {
     }
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
