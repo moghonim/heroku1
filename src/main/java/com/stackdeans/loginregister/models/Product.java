@@ -32,8 +32,14 @@ public class Product {
     @Column(name = "picture3")
     private String picture3;
 
+//    @ManyToOne
+//    private Category category;
+
     @ManyToOne
-    private Category category;
+    private SubCategory subCategory;
+
+    @ManyToOne
+    private Cart cart;
 
     @Column(name = "sellings", nullable = false)
     private int noOfSellings;
@@ -44,7 +50,7 @@ public class Product {
 
 
     public Product(Integer id, String name, String description, double weight, double price, String picture1,
-                   String picture2, String picture3, Category category, int noOfSellings) {
+                   String picture2, String picture3, SubCategory subCategory, int noOfSellings) {
         super();
         this.id = id;
         this.name = name;
@@ -54,7 +60,7 @@ public class Product {
         this.picture1 = picture1;
         this.picture2 = picture2;
         this.picture3 = picture3;
-        this.category = category;
+        this.subCategory = subCategory;
         this.noOfSellings = noOfSellings;
     }
 
@@ -130,12 +136,12 @@ public class Product {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public SubCategory getSubCategory() {
+        return subCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
     }
 
     public double getWeight() {

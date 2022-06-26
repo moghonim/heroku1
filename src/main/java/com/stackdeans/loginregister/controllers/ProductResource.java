@@ -4,9 +4,13 @@ import com.stackdeans.loginregister.models.Product;
 import com.stackdeans.loginregister.repository.ProductRepository;
 import com.stackdeans.loginregister.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -17,14 +21,10 @@ import java.util.stream.Collectors;
 @CrossOrigin("*")
 public class ProductResource {
 
-    /**
-     * The product repository.
-     */
     @Autowired
     private ProductRepository productRepository;
     @Autowired
     private ProductService productService;
-
 
     @GetMapping(value = "/all")
     public List<Product> getAll() {
@@ -72,4 +72,21 @@ public class ProductResource {
         return products;
 
     }
+
+
+    @GetMapping(value = "/pageofproducts")
+    Page<Product> getAllProducts(
+            @RequestParam Optional<Integer> page,
+            @RequestParam Optional<String> sortBy
+    ) {
+        return productRepository.findAll(
+                PageRequest.of(
+                        page.orElse(0),
+                        5, Sort.Direction.ASC,
+                        sortBy.orElse("id")
+                )
+        );
+    }
+
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
 
@@ -18,8 +18,11 @@ public class Category {
     @Column(name = "picture")
     private String picture;
 
+    //    @OneToMany(mappedBy = "category")
+//    private List<Product> products;
+//
     @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    private List<SubCategory> subCategories;
 
     public Category() {
     }
@@ -57,5 +60,13 @@ public class Category {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
     }
 }
