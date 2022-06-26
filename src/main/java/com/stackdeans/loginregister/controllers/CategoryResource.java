@@ -30,7 +30,7 @@ public class CategoryResource {
      * @return category if exists
      */
     @GetMapping(value = "/get")
-    public Category get(@RequestParam("id") int id) {
+    public Category get(@RequestParam("id") Long id) {
         return categoryRepository.findById(id).get();
     }
 
@@ -47,13 +47,13 @@ public class CategoryResource {
     }
 
     @DeleteMapping(value = "/delete")
-    public List<Category> delete(@PathVariable int id) {
+    public List<Category> delete(@PathVariable Long id) {
         categoryRepository.deleteById(id);
         return categoryRepository.findAll();
     }
 
     @PutMapping(value = "/put/{id}")
-    public List<Category> put(@PathVariable int id, @RequestBody Category category) {
+    public List<Category> put(@PathVariable Long id, @RequestBody Category category) {
         if (categoryRepository.existsById(id)) {
             categoryRepository.deleteById(id);
             categoryRepository.save(category);

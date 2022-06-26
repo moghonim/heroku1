@@ -11,6 +11,10 @@ public class Product {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
+    @ManyToOne
+    private WishList wishList;
+
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -48,11 +52,9 @@ public class Product {
     public Product() {
     }
 
-
-    public Product(Long id, String name, String description, double weight, double price, String picture1,
-                   String picture2, String picture3, SubCategory subCategory, int noOfSellings) {
-        super();
+    public Product(Long id, WishList wishList, String name, String description, double weight, double price, String picture1, String picture2, String picture3, SubCategory subCategory, Cart cart, int noOfSellings) {
         this.id = id;
+        this.wishList = wishList;
         this.name = name;
         this.description = description;
         this.weight = weight;
@@ -61,6 +63,7 @@ public class Product {
         this.picture2 = picture2;
         this.picture3 = picture3;
         this.subCategory = subCategory;
+        this.cart = cart;
         this.noOfSellings = noOfSellings;
     }
 
@@ -87,6 +90,21 @@ public class Product {
         return name;
     }
 
+    public WishList getWishList() {
+        return wishList;
+    }
+
+    public void setWishList(WishList wishList) {
+        this.wishList = wishList;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public void setName(String name) {
         this.name = name;

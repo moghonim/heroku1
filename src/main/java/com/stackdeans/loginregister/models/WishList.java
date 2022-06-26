@@ -1,6 +1,7 @@
 package com.stackdeans.loginregister.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class WishList {
@@ -11,15 +12,16 @@ public class WishList {
     private Long id;
 
     @Column
-    private Product product;
+    @OneToMany(mappedBy = "wishList")
+    private List<Product> products;
 
 
     public WishList() {
     }
 
-    public WishList(long id, Product product) {
+    public WishList(long id, List<Product> product) {
         this.id = id;
-        this.product = product;
+        this.products = product;
     }
 
     public long getId() {
@@ -30,11 +32,11 @@ public class WishList {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public List<Product> getProduct() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(List<Product> product) {
+        this.products = product;
     }
 }

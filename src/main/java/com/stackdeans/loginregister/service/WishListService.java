@@ -13,7 +13,7 @@ public class WishListService {
 
     public void save(Product product) {
         WishList wishList = new WishList();
-        wishList.setProduct(product);
+        wishList.getProduct().add(product);
         wishListRepository.save(wishList);
     }
 
