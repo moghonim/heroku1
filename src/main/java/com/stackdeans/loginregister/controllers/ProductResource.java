@@ -62,6 +62,28 @@ public class ProductResource {
         return productService.searchByProductName(name);
     }
 
+
+    @GetMapping("/search-by-product-name1/{name}")
+    public Page<Product> searchByProductName1(@PathVariable String name,
+                                              @RequestParam Optional<Integer> page, @RequestParam Optional<String> sortBy
+    ) {
+
+//        PageRequest pageRequest=PageRequest.of(
+//                page.orElse(0),
+//                5, Sort.Direction.ASC,
+//                sortBy.orElse("id"));
+
+
+        return productRepository.searchfor(name, PageRequest.of(
+                page.orElse(0),
+                5, Sort.Direction.ASC,
+                sortBy.orElse("id")
+        ));
+
+
+    }
+
+
     @GetMapping("/top/{noOfSellings}")
     public List<Product> topSellingProducts(@PathVariable int noOfSellings) {
         List<Product> products = productRepository.searchForTop()
