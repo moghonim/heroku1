@@ -20,9 +20,20 @@ public class SignupRequest {
 
     private Set<String> role;
 
+    private Set<String> permission;
+
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+
+
+    public Set<String> getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Set<String> permission) {
+        this.permission = permission;
+    }
 
     public String getUsername() {
         return username;

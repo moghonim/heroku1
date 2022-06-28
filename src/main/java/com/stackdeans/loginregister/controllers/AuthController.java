@@ -1,12 +1,11 @@
 package com.stackdeans.loginregister.controllers;
 
-import com.stackdeans.loginregister.models.ERole;
-import com.stackdeans.loginregister.models.Role;
-import com.stackdeans.loginregister.models.User;
+import com.stackdeans.loginregister.models.*;
 import com.stackdeans.loginregister.payload.request.LoginRequest;
 import com.stackdeans.loginregister.payload.request.SignupRequest;
 import com.stackdeans.loginregister.payload.response.JwtResponse;
 import com.stackdeans.loginregister.payload.response.MessageResponse;
+import com.stackdeans.loginregister.repository.PermissionRepository;
 import com.stackdeans.loginregister.repository.RoleRepository;
 import com.stackdeans.loginregister.repository.UserRepository;
 import com.stackdeans.loginregister.security.jwt.JwtUtils;
@@ -44,6 +43,9 @@ public class AuthController {
 
   @Autowired
   JwtUtils jwtUtils;
+
+  @Autowired
+  PermissionRepository permissionRepository;
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -86,7 +88,9 @@ public class AuthController {
             encoder.encode(signUpRequest.getPassword()));
 
     Set<String> strRoles = signUpRequest.getRole();
+    Set<String> strPermissions = signUpRequest.getPermission();
     Set<Role> roles = new HashSet<>();
+    Set<Permission> permissions = new HashSet<>();
 
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -123,10 +127,39 @@ public class AuthController {
       });
 
     }
-
     user.setRoles(roles);
-    userRepository.save(user);
 
+
+    if (strPermissions == null) {
+      Permission readPermission = permissionRepository.findByName(EPermission.read)
+              .orElseThrow(() -> new RuntimeException("Error: permission is not found."));
+      permissions.add(readPermission);
+    } else {
+      strPermissions.forEach(permission -> {
+        switch (permission) {
+          case "all":
+            Permission allPermission = permissionRepository.findByName(EPermission.all)
+                    .orElseThrow(() -> new RuntimeException("Error: permission is not found."));
+            permissions.add(allPermission);
+
+
+            break;
+          case "write":
+            Permission writePermission = permissionRepository.findByName(EPermission.write)
+                    .orElseThrow(() -> new RuntimeException("Error: permission is not found."));
+            permissions.add(writePermission);
+
+          default:
+            Permission userPermission = permissionRepository.findByName(EPermission.no)
+                    .orElseThrow(() -> new RuntimeException("Error: permission is not found."));
+            permissions.add(userPermission);
+        }
+      });
+
+    }
+    user.setPermissions(permissions);
+
+    userRepository.save(user);
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
 }
