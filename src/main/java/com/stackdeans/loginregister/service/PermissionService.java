@@ -12,7 +12,7 @@ import java.util.Set;
 @Service
 public class PermissionService {
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
 
     public User getTheCurrentUser(HttpServletRequest request) {
@@ -23,15 +23,8 @@ public class PermissionService {
     public boolean checkThePermission(User user, String permission) {
         Set<Permission> permissions = userRepository.findByUsername(user.getUsername()).getPermissions();
         for (Permission p : permissions) {
-
-            //                return ResponseEntity.ok(new MessageResponse("permissions and roles is okay!"));
-            //                return ResponseEntity
-            //                        .badRequest()
-            //                        .body(new MessageResponse("Error: permissions and roles is not okay!"));
             return p.getName().toString().equals(permission);
-
         }
         return false;
     }
-
 }

@@ -1,9 +1,18 @@
 package com.stackdeans.loginregister.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class WishList {
 
     @Id
@@ -15,28 +24,9 @@ public class WishList {
     @OneToMany(mappedBy = "wishList")
     private List<Product> products;
 
-
-    public WishList() {
-    }
-
     public WishList(long id, List<Product> product) {
         this.id = id;
         this.products = product;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public List<Product> getProduct() {
-        return products;
-    }
-
-    public void setProduct(List<Product> product) {
-        this.products = product;
-    }
 }

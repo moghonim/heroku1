@@ -1,24 +1,29 @@
 package com.stackdeans.loginregister.payload.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 /**
  * @author Ghonim
  */
+@Getter
+@Setter
 public class JwtResponse {
-    private final List<String> roles;
+    private final List<String> permissions;
     private String token;
     private String type = "Bearer";
     private Long id;
     private String username;
     private String email;
 
-    public JwtResponse(String accessToken, Long id, String username, String email, List<String> roles) {
+    public JwtResponse(String accessToken, Long id, String username, String email, List<String> permissions) {
         this.token = accessToken;
         this.id = id;
         this.username = username;
         this.email = email;
-        this.roles = roles;
+        this.permissions = permissions;
     }
 
     public String getAccessToken() {
@@ -61,7 +66,7 @@ public class JwtResponse {
         this.username = username;
     }
 
-    public List<String> getRoles() {
-        return roles;
+    public List<String> getPermissions() {
+        return permissions;
     }
 }

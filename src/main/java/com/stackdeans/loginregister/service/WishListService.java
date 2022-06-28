@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class WishListService {
     @Autowired
-    WishListRepository wishListRepository;
+    private WishListRepository wishListRepository;
 
     public void save(Product product) {
         WishList wishList = new WishList();
-        wishList.getProduct().add(product);
+        wishList.getProducts().add(product);
         wishListRepository.save(wishList);
     }
 
