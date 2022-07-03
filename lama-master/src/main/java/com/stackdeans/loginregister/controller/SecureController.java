@@ -1,6 +1,5 @@
 package com.stackdeans.loginregister.controller;
 
-import com.stackdeans.loginregister.service.ApiKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ import reactor.core.publisher.Mono;
 public class SecureController {
     private static final Logger LOG = LoggerFactory.getLogger(NonSecureController.class);
 
-    @Autowired
-    ApiKey apiKey;
 
     @GetMapping(value = "/api/v1/secure")
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")

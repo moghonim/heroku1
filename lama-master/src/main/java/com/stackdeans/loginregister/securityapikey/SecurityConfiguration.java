@@ -27,9 +27,10 @@ public class SecurityConfiguration {
         authenticationWebFilter.setServerAuthenticationConverter(keyAuthenticationConverter);
 
         return http.authorizeExchange()
-                .pathMatchers("/api/v1/nonsecure").hasAuthority("ROLE_USER")
+                .pathMatchers("/api/token")
+//                .hasAuthority("ROLE_USER")
 //                .anyExchange().authenticated()
-//               .permitAll()
+               .permitAll()
                 .pathMatchers("/api/v1/login")
                 .permitAll()
                 .anyExchange()

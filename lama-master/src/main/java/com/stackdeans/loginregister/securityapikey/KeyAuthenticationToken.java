@@ -1,9 +1,12 @@
 package com.stackdeans.loginregister.securityapikey;
 
+import com.stackdeans.loginregister.models.CustomUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents an authentication token within the example application.
@@ -14,33 +17,16 @@ public class KeyAuthenticationToken implements Authentication {
     private final String principal;
     private boolean authenticated = false;
 
+    private Set<CustomUser> getAuthorities=new HashSet<>();
+
     public KeyAuthenticationToken(final String apiKey, final String principal) {
         this.apiKey = apiKey;
         this.principal = principal;
+        this.getAuthorities=getAuthorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        MapReactiveUserDetailsService mapReactiveUserDetailsService = userDetailsService();
-//        Map<String,UserDetails> map= (Map<String, UserDetails>) mapReactiveUserDetailsService;
-//        UserDetails map.get("user");
-
-//        UserDetails user = User
-//                .withUsername("user")
-//                .password(passwordEncoder().encode("123456"))
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails admin = User
-//                .withUsername("admin")
-//                .password(passwordEncoder().encode("123456"))
-//                .roles("ADMIN")
-//                .build();
-//        Set<CustomUser> users=new HashSet<>();
-//        CustomUser customUser = new CustomUser("ROLE_USER");
-//        users.add(customUser);
-//        users.add(user);
-//        users.add(admin);
         return null;
     }
 
@@ -76,26 +62,4 @@ public class KeyAuthenticationToken implements Authentication {
 
 
 
-
-
-//    @Bean
-//    public MapReactiveUserDetailsService userDetailsService() {
-//        UserDetails user = User
-//                .withUsername("user")
-//                .password(passwordEncoder().encode("123456"))
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails admin = User
-//                .withUsername("admin")
-//                .password(passwordEncoder().encode("123456"))
-//                .roles("ADMIN")
-//                .build();
-//        return new MapReactiveUserDetailsService(user, admin);
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 }
