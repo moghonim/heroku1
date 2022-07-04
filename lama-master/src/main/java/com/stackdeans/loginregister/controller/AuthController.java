@@ -10,10 +10,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api")
 public class AuthController {
-//    @Autowired
-//    private AuthService authService;
-
-    @PostMapping("/auth")
+  @PostMapping("/auth")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 //        return authService.authenticateUser(loginRequest);
         return ResponseEntity.ok("it is very good");

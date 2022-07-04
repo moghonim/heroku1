@@ -26,42 +26,47 @@ public class SecurityConfiguration {
         final AuthenticationWebFilter authenticationWebFilter = new AuthenticationWebFilter(keyAuthenticationManager);
         authenticationWebFilter.setServerAuthenticationConverter(keyAuthenticationConverter);
 
+
         return http.authorizeExchange()
                 .pathMatchers("/api/token")
 //                .hasAuthority("ROLE_USER")
 //                .anyExchange().authenticated()
-               .permitAll()
-                .pathMatchers("/api/v1/login")
+                .permitAll()
+//                .pathMatchers("/api/v1/secure")
+//                .permitAll()
+                .pathMatchers("/api/v1/secure")
                 .permitAll()
                 .anyExchange()
                 .authenticated()
                 .and()
                 .addFilterAt(authenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
-//                .httpBasic()
-//                .disable()
+                .httpBasic()
+                .disable()
                 .csrf()
                 .disable()
-//                .formLogin()
-//                .disable()
-//                .logout()
-//                .disable()
+                .formLogin()
+                .disable()
+                .logout()
+                .disable()
+                .cors().disable()
                 .build();
     }
-    @Bean
-    public MapReactiveUserDetailsService userDetailsService() {
-        UserDetails user = User
-                .withUsername("user")
-                .password(passwordEncoder().encode("123456"))
-                .roles("USER")
-                .build();
+//    @Bean
+//    public MapReactiveUserDetailsService userDetailsService() {
+//        UserDetails user = User
+//                .withUsername("user")
+//                .password(passwordEncoder().encode("123456"))
+//                .roles("USER")
+//                .build();
+//
+//        UserDetails admin = User
+//                .withUsername("admin")
+//                .password(passwordEncoder().encode("123456"))
+//                .roles("ADMIN")
+//                .build();
+//        return new MapReactiveUserDetailsService(user, admin);
+//    }
 
-        UserDetails admin = User
-                .withUsername("admin")
-                .password(passwordEncoder().encode("123456"))
-                .roles("ADMIN")
-                .build();
-        return new MapReactiveUserDetailsService(user, admin);
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  * @author Ghonim
@@ -13,9 +14,14 @@ import org.springframework.data.annotation.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role {
+public class Role implements GrantedAuthority {
     @Id
     private Integer id;
 
-    private ERole name;
+    private String role;
+
+    @Override
+    public String getAuthority() {
+        return role;
+    }
 }

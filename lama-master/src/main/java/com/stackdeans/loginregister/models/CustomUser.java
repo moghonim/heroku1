@@ -16,22 +16,33 @@ public class CustomUser implements GrantedAuthority {
     private String username;
     private String email;
     private String password;
+    private String picture;
     private Set<Role> roles;
 
     public CustomUser() {
     }
 
-    public CustomUser(Long id,String username, String email, String password, Set roles) {
+    public CustomUser(Long id,String username, String email, String password, Set roles, String picture) {
         this.id=id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.picture=picture;
     }
 
 
+    public String getPicture() {
+        return picture;
+    }
 
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
 
 
