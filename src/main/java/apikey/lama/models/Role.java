@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
@@ -15,7 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role implements GrantedAuthority {
-    @Id
+//    @Id
     private Integer id;
 
     private String role;

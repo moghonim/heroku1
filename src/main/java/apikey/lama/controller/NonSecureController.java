@@ -26,7 +26,7 @@ public class NonSecureController {
     @Autowired
 DataService dataService;
 
-    @PostMapping(value = "/api/token1")
+    @PostMapping(value = "/token")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin
     public ResponseEntity<?> nonsecure(@Valid @RequestBody LoginRequest loginRequest) {

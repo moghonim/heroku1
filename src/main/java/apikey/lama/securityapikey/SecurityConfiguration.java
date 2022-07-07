@@ -29,7 +29,7 @@ public class SecurityConfiguration {
 
 
         return http.authorizeExchange()
-                .pathMatchers(HttpMethod.POST,"/api/token1")
+                .pathMatchers(HttpMethod.POST,"/token")
 //                .hasAuthority("ROLE_USER")
 //                .anyExchange().authenticated()
                 .permitAll()

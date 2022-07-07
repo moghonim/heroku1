@@ -1,8 +1,8 @@
 package apikey.lama.models;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 @With
 @AllArgsConstructor
 @NoArgsConstructor
-@Table("users")
+//@Table("users")
 public class CustomUser implements UserDetails {
 
-    @Id
+//    @Id
     private Long id;
     private String username;
     private String email;

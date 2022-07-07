@@ -15,18 +15,18 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AuthController {
 
-    AuthService authService;
-
-
-  @PostMapping("/token")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-     return  authService.authenticateUser(loginRequest);
-  }
-
-    @PostMapping("/register")
-    public ResponseEntity<?> signup(@Valid @RequestBody SignupRequest signUpRequest) {
-        return authService.register(signUpRequest);
-    }
+//    AuthService authService;
+//
+//
+//  @PostMapping("/token")
+//  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+//     return  authService.authenticateUser(loginRequest);
+//  }
+//
+//    @PostMapping("/register")
+//    public ResponseEntity<?> signup(@Valid @RequestBody SignupRequest signUpRequest) {
+//        return authService.register(signUpRequest);
+//    }
 
     @GetMapping("/netty")
     public String getData(){

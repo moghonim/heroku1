@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubCategory {
-    @Id
+//    @Id
     private Long id;
 
     private String name;

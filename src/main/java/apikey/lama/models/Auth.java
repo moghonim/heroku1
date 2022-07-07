@@ -1,15 +1,15 @@
 package apikey.lama.models;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.relational.core.mapping.Table;
 
 //@Builder
 @Data
-@Table("auth")
+//@Table("auth")
 public class Auth {
 
-    @Id
+//    @Id
     private String api_key ;
     private Long user_id ;
 

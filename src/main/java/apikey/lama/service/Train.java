@@ -1,10 +1,6 @@
 package apikey.lama.service;
 
-import apikey.lama.models.Auth;
-import apikey.lama.repository.AuthRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Train {

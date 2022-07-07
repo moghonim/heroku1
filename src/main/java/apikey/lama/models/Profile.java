@@ -1,8 +1,8 @@
 package apikey.lama.models;
 
-import org.springframework.data.relational.core.mapping.Table;
+//import org.springframework.data.relational.core.mapping.Table;
 
-@Table("profile")
+//@Table("profile")
 public class Profile {
 
     private Long id;
