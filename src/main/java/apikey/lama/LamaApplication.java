@@ -30,37 +30,37 @@ public class LamaApplication {
 		SpringApplication.run(LamaApplication.class, args);
 //		server(args);
 	}
-	private static final int PORT = 8443;
-	private static final Logger logger = LoggerFactory.getLogger(Http2Server.class);
-
-	public static void server(String[] args) throws Exception {
-		SslContext sslCtx = Http2Util.createSSLContext(true);
-
-		EventLoopGroup group = new NioEventLoopGroup();
-		try {
-			ServerBootstrap b = new ServerBootstrap();
-			b.option(ChannelOption.SO_BACKLOG, 1024);
-			b.group(group)
-					.channel(NioServerSocketChannel.class)
-					.handler(new LoggingHandler(LogLevel.INFO))
-					.childHandler(new ChannelInitializer<SocketChannel>() {
-						@Override
-						protected void initChannel(SocketChannel ch) throws Exception {
-							if (sslCtx != null) {
-								ch.pipeline()
-										.addLast(sslCtx.newHandler(ch.alloc()), Http2Util.getServerAPNHandler());
-							}
-						}
-					});
-			Channel ch = b.bind(PORT)
-					.sync()
-					.channel();
-			logger.info("HTTP/2 Server is listening on https://127.0.0.1:" + PORT + '/');
-
-			ch.closeFuture()
-					.sync();
-		} finally {
-			group.shutdownGracefully();
-		}
-	}
+//	private static final int PORT = 8443;
+//	private static final Logger logger = LoggerFactory.getLogger(Http2Server.class);
+//
+//	public static void server(String[] args) throws Exception {
+//		SslContext sslCtx = Http2Util.createSSLContext(true);
+//
+//		EventLoopGroup group = new NioEventLoopGroup();
+//		try {
+//			ServerBootstrap b = new ServerBootstrap();
+//			b.option(ChannelOption.SO_BACKLOG, 1024);
+//			b.group(group)
+//					.channel(NioServerSocketChannel.class)
+//					.handler(new LoggingHandler(LogLevel.INFO))
+//					.childHandler(new ChannelInitializer<SocketChannel>() {
+//						@Override
+//						protected void initChannel(SocketChannel ch) throws Exception {
+//							if (sslCtx != null) {
+//								ch.pipeline()
+//										.addLast(sslCtx.newHandler(ch.alloc()), Http2Util.getServerAPNHandler());
+//							}
+//						}
+//					});
+//			Channel ch = b.bind(PORT)
+//					.sync()
+//					.channel();
+//			logger.info("HTTP/2 Server is listening on https://127.0.0.1:" + PORT + '/');
+//
+//			ch.closeFuture()
+//					.sync();
+//		} finally {
+//			group.shutdownGracefully();
+//		}
+//	}
 }
