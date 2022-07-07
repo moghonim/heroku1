@@ -12,9 +12,10 @@ import reactor.core.publisher.Flux;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class UserController {
 
     @Autowired

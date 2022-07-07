@@ -13,6 +13,8 @@ import reactor.core.publisher.Mono;
 /**
  * Controller that requires an API key to access.
  */
+
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class SecureController {
     private static final Logger LOG = LoggerFactory.getLogger(NonSecureController.class);

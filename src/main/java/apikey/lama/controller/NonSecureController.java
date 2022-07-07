@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 //@CrossOrigin(origins = "*", allowedHeaders = "*")
 //@CrossOrigin(origins = {"*"}, maxAge = 3600, allowCredentials="false")
